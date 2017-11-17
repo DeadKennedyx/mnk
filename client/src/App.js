@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
-import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react'
 
 class App extends Component {
-  componentDidMount() {
-    window.fetch('/users')
-      .then(response => response.json())
-      .then(json => console.log(json))
-      .catch(error => console.log(error))
+  constructor(){
+    super()
+    this.state = {}
+    this.getUsers = this.getUsers.bind(this)
+    this.getUser = this.getUser.bind(this)
   }
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+
+  fetch (endpoint) {
+    return new Promise((resolve, reject) => {
+      window.fetch(endpoint)
+      .then(response => response.json())
+      .then(json => resolve(json))
+      .catch(error => reject(error))
+    })
+  }
+
+  getUsers () {
+    this.fetch('/users')
+      .then(users => {
+        this.setState({users: users})
+        this.getUser(users[0].id)
+      })
+  }
+
+  getUser (id) {
+    this.fetch(`users/${id}`)
+      .then(user => this.setState({user: user}))
+  }
+
+  render () {
+    let {users, user} = this.state
+    return users
   }
 }
 
