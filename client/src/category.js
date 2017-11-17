@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class Category extends Component {
   render () {
     return <div>
       <div className="jumbotron col-md-12">
-        <h1>Library</h1>
-        <p>Web application for managing books, users and categories.</p>
+        <h1>Category</h1>
+        <p>Category management</p>
       </div>
       <div>
         <div className="col-md-4">
-            <a href="books">Books</a>
+            Books
         </div>
         <div className="col-md-4">
-            <a href="users">Users</a>
+            Users
         </div>
         <div className="col-md-4">
-            <a href="categories">Categories</a>
+            Categories
         </div>
       </div>
     </div>
@@ -24,4 +24,4 @@ class App extends Component {
 
 
 
-export default App;
+export default Category;
