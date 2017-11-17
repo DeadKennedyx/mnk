@@ -10,6 +10,10 @@ end
 gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'pry'
+gem 'will_paginate'
+gem 'kaminari'
+gem 'pager_api'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'validates_email_format_of'

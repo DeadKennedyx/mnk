@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import User from './user';
-import Book from './book';
-import Category from './category';
+import User from './user/user';
+import Book from './book/book';
+import Category from './category/category';
 import registerServiceWorker from './registerServiceWorker';
 
 render(

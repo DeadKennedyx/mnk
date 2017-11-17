@@ -3,9 +3,11 @@ import List from './list'
 
 class Book extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state= { books:[] }
+    this.deleteBook = this.deleteBook.bind(this)
+    this.updateBook = this.updateBook.bind(this)
   }
 
   componentWillMount() {
@@ -16,6 +18,31 @@ class Book extends Component {
       .then((books) => {
         this.setState({ books: books })
       })
+  }
+
+  updateBook(id,name,author,available){
+    fetch('books/'+id, {
+      method: 'put',
+      headers: new Headers({'content-type': 'application/json'}),
+      body:
+      JSON.stringify({
+          "book":{
+            "name": name,
+            "author": author,
+            "available": available
+          }
+      })
+    }).then(response =>
+      this.componentWillMount()
+    )
+  }
+
+  deleteBook(id) {
+    fetch('books/'+id, {
+      method: 'delete'
+    }).then(response =>
+      this.componentWillMount()
+    )
   }
 
   render () {
@@ -30,7 +57,9 @@ class Book extends Component {
             <div>
               <div className="col-md-12">
                 <div className="container-fluid">
-                  <List listing={this.state.books} />
+                  <List deleteBook={this.deleteBook}
+                        updateBook={this.updateBook}
+                        listing={this.state.books} />
                 </div>
               </div>
             </div>
