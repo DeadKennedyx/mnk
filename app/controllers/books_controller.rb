@@ -6,7 +6,7 @@ class BooksController < ApplicationController
       @books = Book.page(params[:page]).per_page 5
       render json: {books: @books, meta: { records: Book.count, currentPage: @books.current_page }}
     else
-      @books = Book.limit(5)
+      @books = Book.includes(:categories).limit(5)
       render json: {books: @books, meta: { records: Book.count }}
     end
   end
