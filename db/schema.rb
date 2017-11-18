@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20171116232511) do
     t.date "published_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "available"
+    t.boolean "available", default: true
   end
 
   create_table "categories", force: :cascade do |t|

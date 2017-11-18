@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Book.create([{name: "A hitchhiker's guide to the galaxy", author: "Douglas Adams", available: false},
-             {name: "Does robots dream of electric sheeps", author: "Philip K. Dick", available: "true"},
-             {name: "Siddhartha", author: "Herman Hesse", available: false},
-             {name: "Ready Player One!", author: "Ernest Cline", available:true},
-             {name: "Ready Player Two!", author: "Ernest Cline Two", available:true},
-             {name: "Ready Player Three!", author: "Ernest Cline Three", available:true}])
+Book.create([{name: "A hitchhiker's guide to the galaxy", author: "Douglas Adams"},
+             {name: "Does robots dream of electric sheeps", author: "Philip K. Dick"},
+             {name: "Siddhartha", author: "Herman Hesse"},
+             {name: "Ready Player One!", author: "Ernest Cline"},
+             {name: "Ready Player Two!", author: "Ernest Cline Two"},
+             {name: "Ready Player Three!", author: "Ernest Cline Three"}])
 
 User.create([{name: "Juan", email: "juan.dw.ft@gmail.com"},
             {name: "Pedro", email: "pedro@asd.com"},

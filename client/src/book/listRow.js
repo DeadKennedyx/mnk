@@ -16,7 +16,7 @@ class ListRow extends React.Component {
       if(props.available){
         return "Available"
       }else{
-        return "Unavailable"
+        return "Borrowed"
       }
     }
     if(!this.state.editing){
@@ -24,7 +24,6 @@ class ListRow extends React.Component {
         <tr>
           <td>
               {this.props.name}
-              {this.props.id}
           </td>
           <td>
               {this.props.author}
