@@ -2,9 +2,13 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :update, :destroy]
 
   def index
-    @categories = Category.all
-
-    render json: @categories
+    if params[:page]
+      @categories = Category.page(params[:page]).per_page 5
+      render json: {categories: @categories, meta: { records: Category.count, currentPage: @categories.current_page }}
+    else
+      @categories = Category.limit(5)
+      render json: {categories: @categories, meta: { records: Category.count }}
+    end
   end
 
   def show

@@ -5,19 +5,46 @@ class User extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { users:[] }
+    this.state= { users:[], page: 1, currentPage: 1 }
     this.deleteUser = this.deleteUser.bind(this)
     this.updateUser = this.updateUser.bind(this)
   }
 
   componentWillMount() {
-    fetch('users')
+    fetch('users?page=' + this.state.page)
       .then((response) => {
         return response.json()
       })
-      .then((users) => {
-        this.setState({ users: users })
+      .then((data) => {
+        this.setState({ users: data.users, currentPage: data.meta.currentPage })
       })
+  }
+
+  handlePrevPage(page){
+    let prevPage = page - 1
+    this.setState({currentPage: prevPage})
+    fetch('users?page='+ prevPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ users: data.users, currentPage: data.meta.currentPage })
+    })
+  }
+
+  handleNextPage(page){
+    let nextPage = page + 1
+    console.log(nextPage);
+    this.setState({currentPage: nextPage})
+    fetch('users?page='+ nextPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ users: data.users, currentPage: data.meta.currentPage })
+    })
   }
 
   updateUser(id,name,email){
@@ -59,6 +86,12 @@ class User extends Component {
                   <List deleteUser={this.deleteUser}
                         updateUser={this.updateUser}
                         listing={this.state.users} />
+                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
+                  </button>
+                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-right"></span> Next
+                  </button>
                 </div>
               </div>
             </div>

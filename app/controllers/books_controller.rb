@@ -2,9 +2,13 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :update, :destroy]
 
   def index
-    @books = Book.all
-
-    render json: @books
+    if params[:page]
+      @books = Book.page(params[:page]).per_page 5
+      render json: {books: @books, meta: { records: Book.count, currentPage: @books.current_page }}
+    else
+      @books = Book.limit(5)
+      render json: {books: @books, meta: { records: Book.count }}
+    end
   end
 
   def show

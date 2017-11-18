@@ -2,9 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
   def index
-    @users = User.all
-
-    render json: @users
+    if params[:page]
+      @users = User.page(params[:page]).per_page 5
+      render json: {users: @users, meta: { records: User.count, currentPage: @users.current_page }}
+    else
+      @users = User.limit(5)
+      render json: {users: @users, meta: { records: User.count }}
+    end
   end
 
   def show

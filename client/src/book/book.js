@@ -5,19 +5,44 @@ class Book extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { books:[] }
+    this.state= { books:[], page: 1, currentPage: 1 }
     this.deleteBook = this.deleteBook.bind(this)
     this.updateBook = this.updateBook.bind(this)
   }
 
   componentWillMount() {
-    fetch('books')
+    fetch('books?page='+ this.state.page )
       .then((response) => {
         return response.json()
       })
-      .then((books) => {
-        this.setState({ books: books })
+      .then((data) => {
+        this.setState({ books: data.books, currentPage: data.meta.currentPage })
       })
+  }
+
+  handlePrevPage(page){
+    let prevPage = page - 1
+    this.setState({currentPage: prevPage})
+    fetch('books?page='+ prevPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        this.setState({ books: data.books, currentPage: data.meta.currentPage })
+    })
+  }
+
+  handleNextPage(page){
+    let nextPage = page + 1
+    console.log(nextPage);
+    this.setState({currentPage: nextPage})
+    fetch('books?page='+ nextPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        this.setState({ books: data.books, currentPage: data.meta.currentPage })
+    })
   }
 
   updateBook(id,name,author,available){
@@ -60,6 +85,12 @@ class Book extends Component {
                   <List deleteBook={this.deleteBook}
                         updateBook={this.updateBook}
                         listing={this.state.books} />
+                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
+                  </button>
+                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-right"></span> Next
+                  </button>
                 </div>
               </div>
             </div>

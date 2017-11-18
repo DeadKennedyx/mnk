@@ -5,19 +5,46 @@ class Category extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { categories:[] }
+    this.state= { categories:[], page: 1, currentPage: 1 }
     this.deleteCategory = this.deleteCategory.bind(this)
     this.updateCategory = this.updateCategory.bind(this)
   }
 
   componentWillMount() {
-    fetch('categories')
+    fetch('categories?page='+ this.state.page)
       .then((response) => {
         return response.json()
       })
-      .then((categories) => {
-        this.setState({ categories: categories })
+      .then((data) => {
+        this.setState({ categories: data.categories, currentPage: data.meta.currentPage })
       })
+  }
+
+  handlePrevPage(page){
+    let prevPage = page - 1
+    this.setState({currentPage: prevPage})
+    fetch('categories?page='+ prevPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ categories: data.categories, currentPage: data.meta.currentPage })
+    })
+  }
+
+  handleNextPage(page){
+    let nextPage = page + 1
+    console.log(nextPage);
+    this.setState({currentPage: nextPage})
+    fetch('categories?page='+ nextPage )
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        console.log(data)
+        this.setState({ categories: data.categories, currentPage: data.meta.currentPage })
+    })
   }
 
   updateCategory(id,name,description){
@@ -46,7 +73,6 @@ class Category extends Component {
 
   render () {
       if(this.state.categories.length > 0){
-        console.log(this.state.categories)
         return(
           <div>
             <div className="jumbotron col-md-12">
@@ -59,6 +85,12 @@ class Category extends Component {
                   <List deleteCategory={this.deleteCategory}
                         updateCategory={this.updateCategory}
                         listing={this.state.categories} />
+                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
+                  </button>
+                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm">
+                    <span className="glyphicon glyphicon-chevron-right"></span> Next
+                  </button>
                 </div>
               </div>
             </div>

@@ -24,6 +24,7 @@ class ListRow extends React.Component {
         <tr>
           <td>
               {this.props.name}
+              {this.props.id}
           </td>
           <td>
               {this.props.author}
