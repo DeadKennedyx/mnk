@@ -28,7 +28,6 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      binding.pry
       MessageSenderService.new(@book).perform if @book.available
       render json: @book
     else

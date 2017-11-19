@@ -6,8 +6,8 @@ class List extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <table className="table table-inverse">
-          <thead>
+        <table className="table table-bordered table-inverse">
+          <thead className="thead-inverse">
             <tr>
               <th>Book Name</th>
               <th>Book Author</th>

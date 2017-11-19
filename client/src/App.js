@@ -7,16 +7,33 @@ class App extends Component {
         <h1>Library</h1>
         <p>Web application for managing books, users and categories.</p>
       </div>
-      <div>
-        <div className="col-md-4">
-            <a href="books">Books</a>
-        </div>
-        <div className="col-md-4">
-            <a href="users">Users</a>
-        </div>
-        <div className="col-md-4">
-            <a href="categories">Categories</a>
-        </div>
+      <div className="container">
+          <div className="row imagetiles">
+              <div className="col-sm-4 img-container">
+                <a href="/books">
+                  <img src="http://hddfhm.com/images/book-icon-clipart-6.png" className="image"/>
+                  <div className="overlay">
+                    <div className="text">Books</div>
+                  </div>
+                </a>
+              </div>
+              <div className="col-sm-4 img-container">
+                <a href="/users">
+                  <img src="http://www.pvhc.net/img1/aqdxbomfsxkxpifidppy.png" className="image"/>
+                  <div className="overlay">
+                    <div className="text">Users</div>
+                  </div>
+                </a>
+              </div>
+              <div className="col-sm-4 img-container">
+                <a href="/categories">
+                  <img src="http://hddfhm.com/images/book-icon-clipart-6.png" className="image"/>
+                  <div className="overlay">
+                    <div className="text">Hello World</div>
+                  </div>
+                </a>
+              </div>
+          </div>
       </div>
     </div>
   }
