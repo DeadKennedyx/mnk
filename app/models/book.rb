@@ -4,7 +4,9 @@ class Book < ApplicationRecord
   has_many :categories, through: :book_categories
 
   validates_format_of :name, :author, with: /\A([^0-9]*)\z/
+  validates :name, :author, presence: true
   validate :has_categories
+
   before_save :set_availability
 
   def set_availability
@@ -17,7 +19,7 @@ class Book < ApplicationRecord
 
   def has_categories
     unless categories.size > 0
-      errors.add(:base, "It should have at leats one category")
+      errors.add(:base, "It should have at least one category")
     end
   end
 end
