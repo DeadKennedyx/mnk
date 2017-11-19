@@ -7,7 +7,6 @@ class Book < ApplicationRecord
   validate :has_categories
   before_save :set_availability
 
-
   def set_availability
     if self.user
       self.available = false
