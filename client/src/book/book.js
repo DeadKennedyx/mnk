@@ -49,7 +49,7 @@ class Book extends Component {
   handleNextPage(page) {
     let nextPage = page + 1
     if(nextPage > this.state.totalPages){
-      nextPage = page 
+      nextPage = page
     }
     console.log(nextPage);
     this.setState({currentPage: nextPage})
@@ -111,6 +111,7 @@ class Book extends Component {
             <div className="jumbotron col-md-12">
               <h1>Books</h1>
               <p>Books management</p>
+              <a href="/">Home</a>
             </div>
             <div>
               <div className="col-md-12">

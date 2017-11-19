@@ -103,6 +103,7 @@ class User extends Component {
             <div className="jumbotron col-md-12">
               <h1>Users</h1>
               <p>Users management</p>
+              <a href="/">Home</a>
             </div>
             <div>
               <div className="col-md-12">

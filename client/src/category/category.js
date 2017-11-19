@@ -103,6 +103,7 @@ class Category extends Component {
             <div className="jumbotron col-md-12">
               <h1>Categories</h1>
               <p>Categories management</p>
+              <a href="/">Home</a>
             </div>
             <div>
               <div className="col-md-12">
