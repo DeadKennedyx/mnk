@@ -3,10 +3,10 @@ class BooksController < ApplicationController
 
   def index
     if params[:page]
-      @books = Book.page(params[:page]).per_page 5
-      render json: {books: @books, meta: { records: Book.count, currentPage: @books.current_page }}
+      @books = Book.order(created_at: :desc).page(params[:page]).per_page 5
+      render json: {books: @books, include: 'categories', meta: { records: Book.count, currentPage: @books.current_page }}
     else
-      @books = Book.includes(:categories).limit(5)
+      @books = Book.all
       render json: {books: @books, meta: { records: Book.count }}
     end
   end
@@ -17,6 +17,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
+    @book.categories = Category.where(id: params[:book][:category_ids])
 
     if @book.save
       render json: @book, status: :created, location: @book
@@ -43,6 +44,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:name, :author, :published_date)
+      params.require(:book).permit(:name, :author, :published_date, category_ids: [])
     end
 end

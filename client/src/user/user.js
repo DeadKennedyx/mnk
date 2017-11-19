@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import List from './list'
+import Form from './form'
 
 class User extends Component {
 
@@ -8,6 +9,7 @@ class User extends Component {
     this.state= { users:[], page: 1, currentPage: 1 }
     this.deleteUser = this.deleteUser.bind(this)
     this.updateUser = this.updateUser.bind(this)
+    this.addUser = this.addUser.bind(this)
   }
 
   componentWillMount() {
@@ -45,6 +47,22 @@ class User extends Component {
         console.log(data)
         this.setState({ users: data.users, currentPage: data.meta.currentPage })
     })
+  }
+
+  addUser(name, email) {
+    fetch('users', {
+      method: 'post',
+      headers: new Headers({'content-type': 'application/json'}),
+      body:
+      JSON.stringify({
+        "user":{
+          "name": name,
+          "email": email
+        }
+      })
+    }).then(response =>
+      this.componentWillMount()
+    )
   }
 
   updateUser(id,name,email){
@@ -86,6 +104,7 @@ class User extends Component {
                   <List deleteUser={this.deleteUser}
                         updateUser={this.updateUser}
                         listing={this.state.users} />
+                  <Form addUser={this.addUser}/>
                   <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
                     <span className="glyphicon glyphicon-chevron-left"></span> Previous
                   </button>

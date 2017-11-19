@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     if params[:page]
-      @users = User.page(params[:page]).per_page 5
+      @users = User.order(created_at: :desc).page(params[:page]).per_page 5
       render json: {users: @users, meta: { records: User.count, currentPage: @users.current_page }}
     else
       @users = User.limit(5)

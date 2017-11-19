@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import List from './list'
+import Form from './form'
+
 
 class Category extends Component {
 
@@ -8,6 +10,7 @@ class Category extends Component {
     this.state= { categories:[], page: 1, currentPage: 1 }
     this.deleteCategory = this.deleteCategory.bind(this)
     this.updateCategory = this.updateCategory.bind(this)
+    this.addCategory = this.addCategory.bind(this)
   }
 
   componentWillMount() {
@@ -45,6 +48,22 @@ class Category extends Component {
         console.log(data)
         this.setState({ categories: data.categories, currentPage: data.meta.currentPage })
     })
+  }
+
+  addCategory(name, description) {
+    fetch('categories', {
+      method: 'post',
+      headers: new Headers({'content-type': 'application/json'}),
+      body:
+      JSON.stringify({
+        "category":{
+          "name": name,
+          "description": description,
+        }
+      })
+    }).then(response =>
+      this.componentWillMount()
+    )
   }
 
   updateCategory(id,name,description){
@@ -85,6 +104,7 @@ class Category extends Component {
                   <List deleteCategory={this.deleteCategory}
                         updateCategory={this.updateCategory}
                         listing={this.state.categories} />
+                  <Form addCategory={this.addCategory}/>
                   <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
                     <span className="glyphicon glyphicon-chevron-left"></span> Previous
                   </button>

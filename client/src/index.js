@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
+import 'react-select/dist/react-select.css';
 import App from './App';
 import User from './user/user';
 import Book from './book/book';
