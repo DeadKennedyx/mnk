@@ -37,10 +37,10 @@ class ListRow extends React.Component {
       return(
         <tr>
           <td>
-            <input type="text" onChange={this.handleName} name="categoryName" id="categoryId"/>
+            <input type="text" defaultValue={this.props.name} onChange={this.handleName} name="categoryName" id="categoryId"/>
           </td>
           <td>
-            <input type="text" onChange={this.handleDescription} name="categoryDescription" id="categoryDescription"/>
+            <input type="text" defaultValue={this.props.description} onChange={this.handleDescription} name="categoryDescription" id="categoryDescription"/>
           </td>
           <td>
             <button type="button" onClick={(e) => {this.setState({editing: false});

@@ -19,6 +19,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     @book.categories = Category.where(id: params[:book][:category_ids])
 
+    if params[:book][:user_id].present?
+      @book.user = User.find params[:book][:user_id]
+    end
+
     if @book.save
       render json: @book, status: :created, location: @book
     else
@@ -27,7 +31,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    if @book.update(book_params)
+    if @book.update_attributes(book_params.reject{|k,v| v.blank?})
       MessageSenderService.new(@book).perform if @book.available
       render json: @book
     else
@@ -45,6 +49,6 @@ class BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:name, :author, :published_date, category_ids: [])
+      params.require(:book).permit(:name, :author, :published_date, :user_id, category_ids: [])
     end
 end

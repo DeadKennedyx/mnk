@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update(category_params)
+    if @category.update_attributes(category_params.reject{|k,v| v.blank?})
       render json: @category
     else
       render json: @category.errors, status: :unprocessable_entity

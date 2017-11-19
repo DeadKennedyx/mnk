@@ -6,7 +6,7 @@ class Book extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { books: [], page: 1, currentPage: 1, totalPages: 1, categories: [] }
+    this.state= { books: [], page: 1, currentPage: 1, totalPages: 1, users: [], categories: [] }
     this.deleteBook = this.deleteBook.bind(this)
     this.updateBook = this.updateBook.bind(this)
     this.addBook = this.addBook.bind(this)
@@ -28,6 +28,13 @@ class Book extends Component {
       .then((data) => {
         this.setState({ categories: data.categories })
       })
+    fetch('users')
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        this.setState({ users: data.users })
+      })
   }
 
   handlePrevPage(page) {
@@ -35,7 +42,6 @@ class Book extends Component {
     if(prevPage < 1){
       prevPage = 1
     }
-    console.log(prevPage);
     this.setState({currentPage: prevPage})
     fetch('books?page='+ prevPage )
       .then((response) => {
@@ -51,7 +57,6 @@ class Book extends Component {
     if(nextPage > this.state.totalPages){
       nextPage = page
     }
-    console.log(nextPage);
     this.setState({currentPage: nextPage})
     fetch('books?page='+ nextPage )
       .then((response) => {
@@ -62,7 +67,7 @@ class Book extends Component {
     })
   }
 
-  addBook(name, author, category_ids) {
+  addBook(name, author, category_ids, user_id) {
     fetch('books', {
       method: 'post',
       headers: new Headers({'content-type': 'application/json'}),
@@ -71,7 +76,8 @@ class Book extends Component {
         "book":{
           "name": name,
           "author": author,
-          "category_ids": category_ids
+          "category_ids": category_ids,
+          "user_id": user_id
         }
       })
     }).then(response =>
@@ -119,7 +125,7 @@ class Book extends Component {
                   <List deleteBook={this.deleteBook}
                         updateBook={this.updateBook}
                         listing={this.state.books}/>
-                  <Form addBook={this.addBook} categories={this.state.categories}/>
+                  <Form addBook={this.addBook} users={this.state.users} categories={this.state.categories}/>
                   <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm pull-right">
                     <span className="glyphicon glyphicon-chevron-right"></span> Next
                   </button>

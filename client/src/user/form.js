@@ -28,7 +28,7 @@ class Form extends React.Component {
         <div>
           <label>Name:</label>
           <input type="text" className="form-control" onChange={this.handleName}/>
-          <label>Author:</label>
+          <label>Email:</label>
           <input type="text" className="form-control" onChange={this.handleEmail}/>
           <button type="button" onClick={(e) => {this.setState({editing: false});
                                  this.props.addUser(this.state.inputName, this.state.inputEmail)}}
