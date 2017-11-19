@@ -4,6 +4,15 @@ body {
   font-family: sans-serif;
 }
 
+table{
+  height: 274px;
+}
+
+.nav-link{
+  color:black;
+  text-decoration: none;
+}
+
 .image{
   height: 200px;
 }

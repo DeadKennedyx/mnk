@@ -53,6 +53,8 @@ class ListRow extends React.Component {
             <input type="text" onChange={this.handleAuthor} name="bookDescription" id="bookDescription"/>
           </td>
           <td>
+          </td>
+          <td>
             <button type="button" onClick={(e) => {this.setState({editing: false});
                                                   this.props.updateBook(this.props.id, this.state.inputName, this.state.inputAuthor)}}
                                                   className="btn btn-success">Save</button>

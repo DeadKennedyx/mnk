@@ -10,26 +10,26 @@ class App extends Component {
       <div className="container">
           <div className="row imagetiles">
               <div className="col-sm-4 img-container">
-                <a href="/books">
+                <a href="/books" className="nav-link">
                   <img src="http://hddfhm.com/images/book-icon-clipart-6.png" className="image"/>
                   <div className="overlay">
-                    <div className="text">Books</div>
+                    <p>Books</p>
                   </div>
                 </a>
               </div>
               <div className="col-sm-4 img-container">
-                <a href="/users">
+                <a href="/users" className="nav-link">
                   <img src="http://www.pvhc.net/img1/aqdxbomfsxkxpifidppy.png" className="image"/>
                   <div className="overlay">
-                    <div className="text">Users</div>
+                    <p>Users</p>
                   </div>
                 </a>
               </div>
               <div className="col-sm-4 img-container">
-                <a href="/categories">
-                  <img src="http://hddfhm.com/images/book-icon-clipart-6.png" className="image"/>
+                <a href="/categories" className="nav-link">
+                  <img src="https://maxcdn.icons8.com/Share/icon/Ecommerce//tags1600.png" className="image"/>
                   <div className="overlay">
-                    <div className="text">Hello World</div>
+                    <p>Categories</p>
                   </div>
                 </a>
               </div>
