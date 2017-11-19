@@ -120,11 +120,11 @@ class Book extends Component {
                         updateBook={this.updateBook}
                         listing={this.state.books}/>
                   <Form addBook={this.addBook} categories={this.state.categories}/>
-                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
-                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
-                  </button>
-                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm">
+                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm pull-right">
                     <span className="glyphicon glyphicon-chevron-right"></span> Next
+                  </button>
+                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm pull-right">
+                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
                   </button>
                 </div>
               </div>

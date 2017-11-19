@@ -17,7 +17,7 @@ class Form extends React.Component {
   render() {
     if(!this.state.editing){
       return (
-        <div>
+        <div className="col-sm-6">
           <button type="button"  onClick={() => this.setState({editing: true})} className="btn btn-default btn-sm">
              Add Category
           </button>

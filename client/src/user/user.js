@@ -112,11 +112,11 @@ class User extends Component {
                         updateUser={this.updateUser}
                         listing={this.state.users} />
                   <Form addUser={this.addUser}/>
-                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm">
-                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
-                  </button>
-                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm">
+                  <button type="button" onClick={() => this.handleNextPage(this.state.currentPage)} className="btn btn-default btn-sm pull-right">
                     <span className="glyphicon glyphicon-chevron-right"></span> Next
+                  </button>
+                  <button type="button" onClick={() => {this.handlePrevPage(this.state.currentPage)}} className="btn btn-default btn-sm pull-right">
+                    <span className="glyphicon glyphicon-chevron-left"></span> Previous
                   </button>
                 </div>
               </div>

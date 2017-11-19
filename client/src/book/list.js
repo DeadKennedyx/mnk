@@ -6,14 +6,16 @@ class List extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <table>
-          <tr>
-            <th>Book Name</th>
-            <th>Book Author</th>
-            <th>Available?</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
+        <table className="table table-inverse">
+          <thead>
+            <tr>
+              <th>Book Name</th>
+              <th>Book Author</th>
+              <th>Available?</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
           <tbody>
               {
                 this.props.listing.map((record) => {

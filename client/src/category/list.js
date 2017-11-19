@@ -6,7 +6,7 @@ class List extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <table className="table-striped">
+        <table className="table table-inverse">
           <thead>
             <tr>
               <th>Category Name</th>
