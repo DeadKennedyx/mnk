@@ -6,7 +6,7 @@ class User extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { users:[], page: 1, currentPage: 1 }
+    this.state= { users:[], page: 1, totalPages: 1, currentPage: 1 }
     this.deleteUser = this.deleteUser.bind(this)
     this.updateUser = this.updateUser.bind(this)
     this.addUser = this.addUser.bind(this)
@@ -18,12 +18,15 @@ class User extends Component {
         return response.json()
       })
       .then((data) => {
-        this.setState({ users: data.users, currentPage: data.meta.currentPage })
+        this.setState({ users: data.users, currentPage: data.meta.currentPage, totalPages: data.meta.totalPages })
       })
   }
 
   handlePrevPage(page){
     let prevPage = page - 1
+    if(prevPage < 1){
+      prevPage = 1
+    }
     this.setState({currentPage: prevPage})
     fetch('users?page='+ prevPage )
       .then((response) => {
@@ -37,6 +40,9 @@ class User extends Component {
 
   handleNextPage(page){
     let nextPage = page + 1
+    if(nextPage > this.state.totalPages){
+      nextPage = page
+    }
     console.log(nextPage);
     this.setState({currentPage: nextPage})
     fetch('users?page='+ nextPage )

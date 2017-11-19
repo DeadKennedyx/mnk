@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   def index
     if params[:page]
       @categories = Category.order(created_at: :desc).page(params[:page]).per_page 5
-      render json: {categories: @categories, meta: { records: Category.count, currentPage: @categories.current_page }}
+      render json: {categories: @categories, meta: { records: Category.count, currentPage: @categories.current_page, totalPages: @categories.total_pages }}
     else
       @categories = Category.all
       render json: {categories: @categories, meta: { records: Category.count }}

@@ -4,7 +4,7 @@ class BooksController < ApplicationController
   def index
     if params[:page]
       @books = Book.order(created_at: :desc).page(params[:page]).per_page 5
-      render json: {books: @books, include: 'categories', meta: { records: Book.count, currentPage: @books.current_page }}
+      render json: {books: @books, include: 'categories', meta: { records: Book.count, currentPage: @books.current_page, totalPages: @books.total_pages }}
     else
       @books = Book.all
       render json: {books: @books, meta: { records: Book.count }}

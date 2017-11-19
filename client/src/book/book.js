@@ -6,7 +6,7 @@ class Book extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { books: [], page: 1, currentPage: 1, categories: [] }
+    this.state= { books: [], page: 1, currentPage: 1, totalPages: 1, categories: [] }
     this.deleteBook = this.deleteBook.bind(this)
     this.updateBook = this.updateBook.bind(this)
     this.addBook = this.addBook.bind(this)
@@ -18,9 +18,9 @@ class Book extends Component {
         return response.json()
       })
       .then((data) => {
-        this.setState({ books: data.books, currentPage: data.meta.currentPage })
+        console.log(data);
+        this.setState({ books: data.books, currentPage: data.meta.currentPage, totalPages: data.meta.totalPages })
       })
-
     fetch('categories')
       .then((response) => {
         return response.json()
@@ -32,6 +32,10 @@ class Book extends Component {
 
   handlePrevPage(page) {
     let prevPage = page - 1
+    if(prevPage < 1){
+      prevPage = 1
+    }
+    console.log(prevPage);
     this.setState({currentPage: prevPage})
     fetch('books?page='+ prevPage )
       .then((response) => {
@@ -44,6 +48,10 @@ class Book extends Component {
 
   handleNextPage(page) {
     let nextPage = page + 1
+    if(nextPage > this.state.totalPages){
+      nextPage = page 
+    }
+    console.log(nextPage);
     this.setState({currentPage: nextPage})
     fetch('books?page='+ nextPage )
       .then((response) => {

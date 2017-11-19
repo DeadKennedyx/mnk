@@ -7,7 +7,7 @@ class Category extends Component {
 
   constructor(props) {
     super(props)
-    this.state= { categories:[], page: 1, currentPage: 1 }
+    this.state= { categories:[], page: 1, totalPages: 1, currentPage: 1 }
     this.deleteCategory = this.deleteCategory.bind(this)
     this.updateCategory = this.updateCategory.bind(this)
     this.addCategory = this.addCategory.bind(this)
@@ -19,12 +19,15 @@ class Category extends Component {
         return response.json()
       })
       .then((data) => {
-        this.setState({ categories: data.categories, currentPage: data.meta.currentPage })
+        this.setState({ categories: data.categories, currentPage: data.meta.currentPage, totalPages: data.meta.totalPages })
       })
   }
 
   handlePrevPage(page){
     let prevPage = page - 1
+    if(prevPage < 1){
+      prevPage = 1
+    }
     this.setState({currentPage: prevPage})
     fetch('categories?page='+ prevPage )
       .then((response) => {
@@ -38,6 +41,9 @@ class Category extends Component {
 
   handleNextPage(page){
     let nextPage = page + 1
+    if(nextPage > this.state.totalPages){
+      nextPage = page
+    }
     console.log(nextPage);
     this.setState({currentPage: nextPage})
     fetch('categories?page='+ nextPage )
