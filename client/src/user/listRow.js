@@ -49,6 +49,7 @@ class ListRow extends React.Component {
             <button type="button" onClick={(e) => {this.setState({editing: false});
                                                   this.props.updateUser(this.props.id, this.state.inputName, this.state.inputEmail)}}
                                                   className="btn btn-success">Save</button>
+            <button type="button" className="btn btn-default btn-sm" onClick={() => {this.setState({editing: false})}}>Cancel</button>
           </td>
         </tr>
       )

@@ -61,8 +61,9 @@ class Form extends React.Component {
             )}
           </select>
           <button type="button" onClick={(e) => {this.setState({editing: false});
-                                 this.props.addBook(this.state.inputName, this.state.inputAuthor, this.state.inputCategories, this.state.inputUser)}}
-                                 className="btn btn-success">Save</button>
+                                                 this.props.addBook(this.state.inputName, this.state.inputAuthor, this.state.inputCategories, this.state.inputUser)}}
+                                                 className="btn btn-success">Save</button>
+          <button type="button" className="btn btn-default btn-sm" onClick={() => {this.setState({editing: false})}}>Cancel</button>
         </div>
       )
     }
