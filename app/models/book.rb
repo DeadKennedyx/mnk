@@ -17,6 +17,14 @@ class Book < ApplicationRecord
     end
   end
 
+  def is_borrowed_by?(user)
+    if self.user == user
+      true
+    else
+      false
+    end
+  end
+
   def has_categories
     unless categories.size > 0
       errors.add(:base, "It should have at least one category")
