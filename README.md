@@ -31,6 +31,8 @@ Rails 5 API Only and React with Bootstrap
 2. Be able to know if a user borrowed a book or if it's still available
    - To know if a user borrowed a book you just use a scope I created:
   `@user.has_book?("Lord of the Rings") => #true or false`
+   - To know if a book has been borrowed by certain user use this scope:
+   `@book.is_borrowed_by?(user) => #true or false`
 
 ## Conditions & Validations
 1. Book must have at least one category  
