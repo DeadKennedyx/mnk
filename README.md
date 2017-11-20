@@ -9,7 +9,8 @@ Rails 5 API Only and React with Bootstrap
 2. `bundle install`
 3. `rails db:create db:migrate db:seed` run seeds 3 or 4 times to check pagination
 4. `cd client` -> `npm install` -> `cd ..`
-5. To boot the server and client theres a Procfile.dev for development and Procfile for Heroku,
+5. `gem install foreman`
+6. To boot the server and client theres a Procfile.dev for development and Procfile for Heroku,
    to run development use foreman -> `foreman start -f Procfile.dev`, this will run rails in 3001 and the client in 3000
 
 ## Setup Production
