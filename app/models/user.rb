@@ -4,4 +4,10 @@ class User < ApplicationRecord
   validates :email, email_format: { message: "doesn't look like an email address" }
   validates_format_of :name, with: /\A([^0-9]*)\z/
   validates :name, :email, presence: true
+
+  scope :has_book?, ->(book) { joins(:books).where("books.name = ?", book) }
+
+  def has_book?(book)
+    books.where("books.name = ?", book)
+  end
 end

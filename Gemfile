@@ -14,6 +14,7 @@ gem 'pry'
 gem 'active_model_serializers'
 gem 'will_paginate'
 gem 'api-pagination'
+gem 'foreman'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 gem 'validates_email_format_of'
