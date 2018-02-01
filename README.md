@@ -39,5 +39,3 @@ Rails 5 API Only and React with Bootstrap
 1. Book must have at least one category  
 2. User must have a valid email
 3. Book, User and Category doesn't accept names/author with numbers
-
-link to already built app in Heroku: https://maniak-react-rails.herokuapp.com/
