@@ -15,7 +15,7 @@ gem 'active_model_serializers'
 gem 'will_paginate'
 gem 'api-pagination'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 gem 'validates_email_format_of'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
